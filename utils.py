@@ -15,7 +15,12 @@ def debug(msg):
 
 def send(func):
     user, channel, msg = func()
-    user.say(channel, msg)
+    if isinstance(channel, list):
+        for c in channel:
+            user.say(c, msg)
+    else:
+        user.say(channel, msg)
+    
 
 def init():
     acct = hackmud_chat.Account(token='YourToken')
