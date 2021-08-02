@@ -11,19 +11,10 @@ class Message(object):
         self.time      = msg_obj['t']
         self.text      = msg_obj['msg']
         self.from_user = msg_obj['from_user']
-        self.to_user   = None
-        self.channel   = None
-        self.is_join   = None
-        self.is_leave  = None
-
-        if 'channel' in msg_obj:
-            self.channel   = msg_obj['channel']
-        if 'is_join' in msg_obj:
-            self.is_join   = msg_obj['is_join']
-        if 'is_leave' in msg_obj:
-            self.is_leave  = msg_obj['is_leave']
-        if 'to_user' in msg_obj:
-            self.to_user = msg_obj['to_user']
+        self.to_user   = msg_obj.get('to_user')
+        self.channel   = msg_obj.get('channel')
+        self.is_join   = msg_obj.get('is_join')
+        self.is_leave  = msg_obj.get('is_leave')
 
 class User(object):
     def __init__(self, name, chan_obj, account):
